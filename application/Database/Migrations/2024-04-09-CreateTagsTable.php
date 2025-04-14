@@ -23,7 +23,7 @@ class CreateTagsTable extends Migration
             ],
         ]);
 
-        $this->forge->addKey('id', true); // primary key
+        $this->forge->addKey('id', true);
         $this->forge->createTable('tags');
     }
 
@@ -32,4 +32,3 @@ class CreateTagsTable extends Migration
         $this->forge->dropTable('tags');
     }
 }
-// Compare this snippet from application/models/tag_model.php:

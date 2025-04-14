@@ -27,6 +27,7 @@ class Action extends CI_Controller{
         $pass = $this->input->post('password', true);
         $pass2 = $this->input->post('password2', true);
         $name = $this->input->post('name', true);
+        $role = $this->input->post('role', 'admin');
 
         if($this->get->getSetting('recaptchapublic') != ""){
             $recaptcha = new \ReCaptcha\ReCaptcha($this->get->getSetting('recaptchaprivate'));
@@ -72,6 +73,7 @@ class Action extends CI_Controller{
         $email = $this->input->post('email', true);
         $pass = $this->input->post('password', true);
         $result = $this->get->login($email, $pass);
+        $role = $this->get->getUserRole($result);
 
         if ($result != 0) {
             $user = $this->get->getUser($result);

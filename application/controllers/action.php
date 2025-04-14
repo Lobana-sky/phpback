@@ -73,11 +73,15 @@ class Action extends CI_Controller{
         $email = $this->input->post('email', true);
         $pass = $this->input->post('password', true);
         $result = $this->get->login($email, $pass);
-        $role = $this->get->getUserRole($result);
+        
 
         if ($result != 0) {
             $user = $this->get->getUser($result);
             $this->get->setSessionUserValues($user);
+
+            $_SESSION['user_id'] = $user->id;
+            $_SESSION['role_id'] = $user->role_id;
+            $_SESSION['username'] = $user->username;
 
             if(@isset($_POST['rememberme']) && $_POST['rememberme']){
                 $this->get->setSessionCookie();
